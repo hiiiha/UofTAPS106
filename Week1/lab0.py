@@ -3,7 +3,7 @@
 ###################################
 
 ## Print a welcome message to the user
-name = "" # TODO: Enter your name here
+name = "Aven" # TODO: Enter your name here
 welcome_msg = "Hi " + name + ", Welcome to APS106!"
 print(welcome_msg)
 
