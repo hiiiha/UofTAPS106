@@ -335,6 +335,9 @@ def harris_corners(img, width, height, threshold):
 ###################################
 # PART 4 - Non-maxima Suppression #
 ###################################
+def calculate_distance(point1: tuple, point2: tuple) -> float:
+    """Calculate the Euclidean distance between two (x, y) points."""
+    return ((point2[0] - point1[0]) ** 2 + (point2[1] - point1[1]) ** 2) ** (1/2)
 
 def non_maxima_suppression(corners, min_distance):
     """
@@ -359,27 +362,12 @@ def non_maxima_suppression(corners, min_distance):
         A tuple of two-element coordinate lists representing the corners that
         have been retained after non-maxima suppression.
     """
-    min_dist_square = min_distance * min_distance
-    # initialize with first item
-    suppressed_list = [corners[0]]
+    kept = []
+    for candidate in corners:
+        if all(calculate_distance(candidate, kept_point) >= min_distance for kept_point in kept):
+            kept.append(candidate)
 
-    # loop through the oroginal corners list to find out if to add or not
-    for unsupressed_corner in corners:
-        # compare with every item already added in the supressed list
-        for already_added_corner in suppressed_list:
-            this_distance_square_list = []
-            this_distance_square = ((unsupressed_corner[0] - already_added_corner[0]) ** 2 +
-                                    (unsupressed_corner[1] - already_added_corner[1]) ** 2 )
-            this_distance_square_list.append(this_distance_square)
-        
-        # get the min number of distance
-        min_this_distance_square = min(this_distance_square_list)
-
-        # min distance is larger than that set
-        if min_this_distance_square >= min_dist_square:
-            suppressed_list.append(unsupressed_corner)
-
-    return tuple(suppressed_list)
+    return tuple(kept)
 
     
 
