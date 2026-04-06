@@ -1,5 +1,7 @@
 Last Name,ID,Availability,Midterm 1
 Minahan,2631646e-1ce5-4d88-80ea-9e80a5f4c118,Yes,39
+Fake,MismatchIDtest,Yes,123
+DNE,NonExistTest,Yes,0
 Taussig,e6b24243-bc78-4cc8-94bf-b96147d37638,Yes,36
 Harris,1aa40c83-e1c6-4cc5-9c9c-4c234b7f6a75,Yes,34
 Rosenbaum,2a66e2df-851e-430a-b992-378e0ca8039a,Yes,13
